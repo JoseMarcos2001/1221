@@ -13,3 +13,4 @@ function rascunho(){
   function orçamento(){
     location.href = "orcamento/index.html";
   }
+

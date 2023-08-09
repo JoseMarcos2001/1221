@@ -15,18 +15,40 @@ const firebaseConfig = {
   var clienteFormDB = firebase.database().ref("clienteForm");
   
   document.getElementById("clienteForm").addEventListener("submit", submitForm);
+
   
   function submitForm(e) {
     e.preventDefault();
-  
+    
+
     var name = getElementVal("name");
+    if(!name){ 
+      alert("insira um nome");
+    }else
+
     var emailid = getElementVal("emailid");
+
+    if(!emailid){ 
+      alert("insira um email");
+    }else
+
     var cpf = getElementVal("cpf");
+    if(!cpf){
+      alert("insira um cpf");
+      console.log(cpf);
+    }else
+
     var phone = getElementVal("phone");
+    if(!phone){
+      alert("insira um telefone valido");
+    }else
     var endereco = getElementVal("endereco");
-  
+    if(!endereco){
+      alert("insira um endereço");
+    }else
+    
     saveMessages(name,phone, emailid,cpf,endereco);
-  
+    
     //   enable alert
     
   
@@ -34,6 +56,7 @@ const firebaseConfig = {
     alert("Cliente cadastrado(a)!");
     document.getElementById("clienteForm").reset();
   }
+
   
   const saveMessages = (name,phone, emailid, cpf,endereco) => {
     var newClienteForm = clienteFormDB.push();
@@ -51,5 +74,7 @@ const firebaseConfig = {
     return document.getElementById(id).value;
   };
   
-  
+  function voltar(){  
+      location.href = "../tela_inicial.html";
+  }
   
