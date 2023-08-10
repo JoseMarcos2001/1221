@@ -8,12 +8,31 @@ function readFom() {
   console.log(rollV, nameV, addressV, genderV);
 }
 
+document.getElementById("insert").onclick = function () {
+  readFom();
+
+  firebase
+    .database()
+    .ref("funcionario/" + rollV)
+    .set({
+      rollNo: rollV,
+      name: nameV,
+      gender: genderV,
+      address: addressV,
+    });
+  alert("Data Inserted");
+  document.getElementById("roll").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("gender").value = "";
+  document.getElementById("address").value = "";
+};
+
 document.getElementById("read").onclick = function () {
   readFom();
 
   firebase
     .database()
-    .ref("funcionarioForm/" + nameV)
+    .ref("funcionario/" + rollV)
     .on("value", function (snap) {
       document.getElementById("roll").value = snap.val().rollNo;
       document.getElementById("name").value = snap.val().name;
@@ -27,7 +46,7 @@ document.getElementById("update").onclick = function () {
 
   firebase
     .database()
-    .ref("funcionarioForm/" + nameV)
+    .ref("funcionario/" + rollV)
     .update({
       //   rollNo: rollV,
       name: nameV,
@@ -45,7 +64,7 @@ document.getElementById("delete").onclick = function () {
 
   firebase
     .database()
-    .ref("student/" + rollV)
+    .ref("funcionario/" + rollV)
     .remove();
   alert("Data Deleted");
   document.getElementById("roll").value = "";
