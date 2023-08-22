@@ -4,34 +4,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Funcionarios</title>
+    <title>Funcionarios Cadastrados</title>
     <link rel="stylesheet" href="style.css" /> 
   </head>
   <body>
     <div class="container">
-      <h2>Edição de usuarios</h2>
-      <hr />
-      <br />
-      <div class="form">
-        RollNo: <input type="text" name="RollNo" id="roll" /> <br /><br />
-        Nome:&nbsp; <input type="text" name="name" id="name" /> <br /><br />
-        Telefone: <input type="text" name="gender" id="gender" /> <br /><br />
-        Email: <input type="text" name="Address" id="address" /> <br /><br />
-      </div>
+      <h1>Cadastros</h1>
+      <table>
+          <thead>
+              <tr>
+                <th>ID</th>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                  <th>Email</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
 
-      <div class="buttons">
-        <button id="insert">Insert</button>
-        <button id="read">Read</button>
-        <button id="update">Update</button>
-        <button id="delete">Delete</button>
-      </div>
-    </div>
+          </tbody>
+      </table>
 
-    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+  </div>
 
-    <script src="./fireConfig.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.2.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.2.0/firebase-database-compat.js"></script>
+
 
     <script src="./myscript.js"></script>
-    <script src="./scriptfuncionario.js"></script>
+    
   </body>
 </html>

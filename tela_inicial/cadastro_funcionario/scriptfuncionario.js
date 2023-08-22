@@ -126,8 +126,16 @@ document.getElementById("delete").onclick = function () {
   document.getElementById("name").value = "";
   document.getElementById("phone").value = "";
 
-  FirebaseAuth.getInstance().deleteUser(uid);
-  System.out.println("Successfully deleted user.");
+  const user = firebase.auth().currentUser;
+  user.delete().then(()=>{
+  console.log("usuario removido com sucesso");
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    // ..
+    console.log(errorMessage);
+    //alert(error);
+  }); 
 
 };
 
