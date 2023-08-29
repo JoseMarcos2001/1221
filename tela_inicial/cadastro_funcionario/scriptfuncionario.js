@@ -137,6 +137,8 @@ document.getElementById("delete").onclick = function () {
     //alert(error);
   }); 
 
+  
+
 };
 
 
@@ -144,4 +146,8 @@ document.getElementById("delete").onclick = function () {
 
 function crud(){
   location.href = "./index_crud.html";
+}
+
+function inicial(){
+  location.href = "../tela_inicial.html";
 }

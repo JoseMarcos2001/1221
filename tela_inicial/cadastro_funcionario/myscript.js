@@ -31,3 +31,9 @@ fetchedData.on('value', (snapshot) => {
     }
     dataContainer.innerHTML = htmlData
 })
+
+function voltar(){
+    location.href = "./index.html";
+  }
+
+ 
