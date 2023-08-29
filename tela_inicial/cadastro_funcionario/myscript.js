@@ -25,15 +25,10 @@ fetchedData.on('value', (snapshot) => {
                 <td>${value.phone}</td>
                 <td>${value.emailid}</td>
                 
+                
             </tr>
 
         `;
     }
     dataContainer.innerHTML = htmlData
 })
-
-function voltar(){
-    location.href = "./index.html";
-  }
-
- 

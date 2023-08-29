@@ -52,6 +52,7 @@ function submitForm(e) {
   //   reset the form
   alert("Cliente(a) cadastrado(a)!");
  document.getElementById("clienteForm").reset();
+ window.location.reload();
 }
 
 
@@ -119,6 +120,7 @@ document.getElementById("update").onclick = function () {
   document.getElementById("phone").value = "";
   document.getElementById("emailid").value = "";
   document.getElementById("enderecoid").value = "";
+  window.location.reload();
 };
 
 
@@ -136,26 +138,14 @@ document.getElementById("delete").onclick = function () {
   document.getElementById("emailid").value = "";
   document.getElementById("enderecoid").value = "";
 
-  const user = firebase.auth().currentUser;
-  user.delete().then(()=>{
-  console.log("usuario removido com sucesso");
-  })
-  .catch((error) => {
-    const errorMessage = error.message;
-    // ..
-    console.log(errorMessage);
-    //alert(error);
-  }); 
-
-  
-
+  window.location.reload();
 };
 
 
 
 
 function crud(){
-  location.href = "./index_crud.html";
+  location.href = "./index.html";
 }
 
 function inicial(){

@@ -228,13 +228,3 @@ td button i {
 td button i:first-child {
   margin-right: 10px;
 }
-
-footer{
-  position: absolute;
-    bottom: 0;
-    color: #FFF;
-    width: 100%;
-    height: 100px;    
-    text-align: left;
-    line-height: 140px;
-}

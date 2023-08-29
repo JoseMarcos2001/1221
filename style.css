@@ -5,12 +5,9 @@
 }
 
 body{
-	
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
-	
 }
-
 
 .wave{
 	position: fixed;
@@ -223,4 +220,3 @@ a:hover{
 		justify-content: center;
 	}
 }
-
