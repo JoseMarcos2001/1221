@@ -94,7 +94,7 @@ const getElementVal = (id) => {
 var numV, nameV, phoneV;
 
 function readFom() {
-  numV = document.getElementById("numID").value.match(/\d/g).join("");//LIMPA MASCARA;;
+  numV = document.getElementById("numID").value;
   nameV = document.getElementById("name").value;
   phoneV = document.getElementById("phone").value;
   console.log(numV, nameV, phoneV);

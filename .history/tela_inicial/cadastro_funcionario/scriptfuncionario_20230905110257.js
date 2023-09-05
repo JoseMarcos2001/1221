@@ -74,10 +74,17 @@ const saveMessages = (CPF,name,phone, emailid, passwordid) => {
 };
 /******************************************************* */
 const saveUser = (email,password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((user) => loginUserSuccess(dispatch, user))
-  .catch(() => createUserFail(dispatch));
   
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user);
+    
+    // ...
+  }).catch(error =>{
+alert(getErrorMessage(error));
+})
 };
 
 function getErrorMessage(error){
@@ -94,7 +101,7 @@ const getElementVal = (id) => {
 var numV, nameV, phoneV;
 
 function readFom() {
-  numV = document.getElementById("numID").value.match(/\d/g).join("");//LIMPA MASCARA;;
+  numV = document.getElementById("numID").value;
   nameV = document.getElementById("name").value;
   phoneV = document.getElementById("phone").value;
   console.log(numV, nameV, phoneV);

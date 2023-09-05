@@ -1,4 +1,3 @@
-
 const firebaseConfig = {
   apiKey: "AIzaSyCV2Eu8UdJX2_9FYVLFTV4aF_hLQJ4Edj8",
   authDomain: "marmore-9e301.firebaseapp.com",
@@ -47,7 +46,6 @@ function submitForm(e) {
 
   saveMessages(CPF,name,phone, emailid, passwordid);
 
-  saveUser(emailid,passwordid);
   //   enable alert
   
 
@@ -59,33 +57,17 @@ function submitForm(e) {
 
 
 const saveMessages = (CPF,name,phone, emailid, passwordid) => {
-  CPF=CPF.match(/\d/g).join("");//LIMPA MASCARA
-  console.log(CPF);
   firebase
     .database()
     .ref("funcionarioForm/" + CPF)
     .set({
-      CPF: CPF,
+      CPF:
     name: name,
     phone: phone,
     emailid: emailid,
     passwordid: passwordid,
   });
 };
-/******************************************************* */
-const saveUser = (email,password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((user) => loginUserSuccess(dispatch, user))
-  .catch(() => createUserFail(dispatch));
-  
-};
-
-function getErrorMessage(error){
-return error.message;
-}
-
-
-/******************************************************* */
 
 const getElementVal = (id) => {
   return document.getElementById(id).value;
@@ -94,7 +76,7 @@ const getElementVal = (id) => {
 var numV, nameV, phoneV;
 
 function readFom() {
-  numV = document.getElementById("numID").value.match(/\d/g).join("");//LIMPA MASCARA;;
+  numV = document.getElementById("numID").value;
   nameV = document.getElementById("name").value;
   phoneV = document.getElementById("phone").value;
   console.log(numV, nameV, phoneV);

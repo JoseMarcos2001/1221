@@ -1,4 +1,3 @@
-
 const firebaseConfig = {
   apiKey: "AIzaSyCV2Eu8UdJX2_9FYVLFTV4aF_hLQJ4Edj8",
   authDomain: "marmore-9e301.firebaseapp.com",
@@ -47,7 +46,6 @@ function submitForm(e) {
 
   saveMessages(CPF,name,phone, emailid, passwordid);
 
-  saveUser(emailid,passwordid);
   //   enable alert
   
 
@@ -73,17 +71,49 @@ const saveMessages = (CPF,name,phone, emailid, passwordid) => {
   });
 };
 /******************************************************* */
-const saveUser = (email,password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((user) => loginUserSuccess(dispatch, user))
-  .catch(() => createUserFail(dispatch));
+const saveUser = {
   
-};
+  
+
+  var email =  getElementVal("emailid");
+
+  var password = getElementVal("passwordid");
+  
+ 
+  function register(){
+
+firebase.auth().createUserWithEmailAndPassword(
+email
+).then(()=>{
+window.location.href = "./tela_inicial/tela_inicial.html";
+}).catch(error =>{
+alert(getErrorMessage(error));
+})
+}
 
 function getErrorMessage(error){
 return error.message;
 }
 
+  
+  
+  //For new registration
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user);
+    
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    console.log(errorMessage);
+    //alert(error);
+  });  		  
+});
 
 /******************************************************* */
 
@@ -94,7 +124,7 @@ const getElementVal = (id) => {
 var numV, nameV, phoneV;
 
 function readFom() {
-  numV = document.getElementById("numID").value.match(/\d/g).join("");//LIMPA MASCARA;;
+  numV = document.getElementById("numID").value;
   nameV = document.getElementById("name").value;
   phoneV = document.getElementById("phone").value;
   console.log(numV, nameV, phoneV);
