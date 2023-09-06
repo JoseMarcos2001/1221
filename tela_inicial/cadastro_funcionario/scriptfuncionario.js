@@ -110,6 +110,7 @@ document.getElementById("read").onclick = function () {
       document.getElementById("numID").value = snap.val().CPF;
       document.getElementById("name").value = snap.val().name;
       document.getElementById("phone").value = snap.val().phone;
+      document.getElementById("emailid").value = snap.val().emailid;
     });
     
 };

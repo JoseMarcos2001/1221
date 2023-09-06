@@ -12,7 +12,7 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   
   // reference your database
-  var funcionarioFormDB = firebase.database().ref("funcionarioForm");
+  var funcionarioFormDB = firebase.database().ref("senhaform");
   
   var emailV,numV;
 
