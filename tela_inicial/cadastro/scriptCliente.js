@@ -19,8 +19,9 @@ document.getElementById("clienteForm").addEventListener("submit", submitForm);
 function submitForm(e) {
   e.preventDefault();
   
-  var numID = getElementVal("numID");
-  if(!numID){ 
+  window.location.reload();
+  var CPF = getElementVal("numID");
+  if(!CPF){ 
     alert("insira um nome");
   }else
 
@@ -44,25 +45,26 @@ function submitForm(e) {
     alert("insira um endereço");
   }else
 
-  saveMessages(numID,name,phone, emailid, enderecoid);
+  saveMessages(CPF,name,phone, emailid, enderecoid);
 
   //   enable alert
   
 
   //   reset the form
-  alert("Cliente(a) cadastrado(a)!");
+  alert("Cliente cadastrado!");
  document.getElementById("clienteForm").reset();
  window.location.reload();
 }
 
 
 
-const saveMessages = (numID,name,phone, emailid, enderecoid) => {
+const saveMessages = (CPF,name,phone, emailid, enderecoid) => {
+  CPF=CPF.match(/\d/g).join("");//LIMPA MASCARA
   firebase
     .database()
-    .ref("clienteForm/" + numID)
+    .ref("clienteForm/" + CPF)
     .set({
-    numID: numID,
+      CPF: CPF,
     name: name,
     phone: phone,
     emailid: emailid,
@@ -77,7 +79,7 @@ const getElementVal = (id) => {
 var numV, nameV, phoneV,emailV,enderecoV;
 
 function readFom() {
-  numV = document.getElementById("numID").value;
+  numV = document.getElementById("numID").value.match(/\d/g).join("");//LIMPA MASCARA;;;
   nameV = document.getElementById("name").value;
   phoneV = document.getElementById("phone").value;
   emailV = document.getElementById("emailid").value;
@@ -92,7 +94,7 @@ document.getElementById("read").onclick = function () {
     .database()
     .ref("clienteForm/" + numV)
     .on("value", function (snap) {
-      document.getElementById("numID").value = snap.val().numID;
+      document.getElementById("numID").value = snap.val().CPF;
       document.getElementById("name").value = snap.val().name;
       document.getElementById("phone").value = snap.val().phone;
       document.getElementById("emailid").value = snap.val().emailid;
@@ -131,7 +133,7 @@ document.getElementById("delete").onclick = function () {
     .database()
     .ref("clienteForm/" + numV)
     .remove();
-  alert("Data Deleted");
+    alert("Deletado com sucesso!");
   document.getElementById("numID").value = "";
   document.getElementById("name").value = "";
   document.getElementById("phone").value = "";

@@ -7,9 +7,10 @@
         <script src="../mascaras.js" ></script>
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Clientes - Marmoraria</title>
+        <title>Produtos - Marmoraria</title>
         <script defer src="../js/scripts.js"></script>
         <script defer src="./scriptinicio.js"></script>
+        
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles.css" rel="stylesheet" />
     </head>
@@ -22,10 +23,10 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="inicio()">Inicio</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_funcionario()">Funcionarios</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_cliente()">Clientes</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Produtos</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Orçamentos</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Rascunho</a>
-	            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Alterar senha</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_produto()">Produtos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="orcamento()">Orçamentos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="rascunho()">Rascunho</a>
+	            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="senha()">Alterar senha</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -39,7 +40,7 @@
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                 
                                 <li class="nav-item dropdown">
-                                        
+                                    
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Conta">
                                         
                                     
@@ -51,28 +52,32 @@
                 </nav>
                 <!-- Page content-->
                 <div class="container">
-                    <h1 class="mt-4">Cadastro de Cliente</h1>
+                    <h1 class="mt-4">Cadastro de produtos</h1>
 
-                    <form action="" id="clienteForm">
+                    <form action="" id="produtosForm">
                         
-                          <div class="inputBox"><br>
-                              <input type="tel" id="numID" placeholder="CPF" onkeyup="handleCPF(event)" maxlength="11" required />
-                          </div>
-                  
+                        <div id="teste"class="inputBox"><br>
+                            <input type="tel" id="cod" placeholder="codpedra" onkeyup="handleCPF(event)" maxlength="2" required />
+                        </div>
+
                           <div id="teste"class="inputBox"><br>
-                              <input type="text" id="name" placeholder="Nome" />
+                              <input type="text" id="tipo" placeholder="Produto" />
                           </div>
-                  
-                          <div class="inputBox"><br>
-                            <input type="tel" id="phone" placeholder="Telefone" onkeyup="handlePhone(event)" maxlength="11" required />
+
+                          <div id="teste"class="inputBox"><br>
+                            <input type="text" id="cor" placeholder="Cor do Produto" />
+                        </div>
+
+                        <div id="teste"class="inputBox"><br>
+                            <input type="number" id="metroquadrado" placeholder="Metro quadrado" />
                         </div>
                   
-                          <div class="inputBox"><br>
-                              <input type="email" id="emailid" placeholder="Email" />
-                          </div>
+                        <div id="teste"class="inputBox"><br>
+                            <input type="number" id="valorbruto" placeholder="Valor Bruto" />
+                        </div>
                   
-                          <div class="inputBox"><br>
-                            <input type="text" id="enderecoid" placeholder="Endereço" />
+                        <div id="teste"class="inputBox"><br>
+                            <input type="number" id="valorimposto" placeholder="Valor do imposto" />
                         </div>
                   
                           <div class="inputBox">
@@ -86,9 +91,7 @@
                             <button id="update">🔄Atualizar</button>
                             <button id="delete">🚯Deletar</button>
                           </div>
-                          <div>
-                            <button type="button" onclick="crud()">👤CLIENTES CADASTRADOS</button>
-                            </div>
+                         
                   
                             <footer>
                               <button type="button" onclick="inicial()">⬅VOLTAR</button>
@@ -96,8 +99,8 @@
                       </form>
                   </div>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-                  <script src="scriptCliente.js"></script> 
-
+                  <script src="scriptProduto.js"></script>
+                    
                 </div>
             </div>
         </div>

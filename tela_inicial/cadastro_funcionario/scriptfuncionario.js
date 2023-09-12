@@ -19,6 +19,7 @@ document.getElementById("funcionarioForm").addEventListener("submit", submitForm
 function submitForm(e) {
   e.preventDefault();
   
+  
   var CPF = getElementVal("numID");
   if(!CPF){ 
     alert("insira o CPF");
@@ -57,6 +58,7 @@ function submitForm(e) {
 
 
 const saveMessages = (CPF,name,phone, emailid, passwordid) => {
+  CPF=CPF.match(/\d/g).join("");//LIMPA MASCARA
   firebase
     .database()
     .ref("funcionarioForm/" + CPF)
@@ -76,7 +78,7 @@ const getElementVal = (id) => {
 var numV, nameV, phoneV;
 
 function readFom() {
-  numV = document.getElementById("numID").value;
+  numV = document.getElementById("numID").value.match(/\d/g).join("");//LIMPA MASCARA;;;
   nameV = document.getElementById("name").value;
   phoneV = document.getElementById("phone").value;
   console.log(numV, nameV, phoneV);
@@ -92,6 +94,7 @@ document.getElementById("read").onclick = function () {
       document.getElementById("numID").value = snap.val().CPF;
       document.getElementById("name").value = snap.val().name;
       document.getElementById("phone").value = snap.val().phone;
+      document.getElementById("emailid").value = snap.val().emailid;
     });
     
 };
