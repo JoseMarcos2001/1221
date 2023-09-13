@@ -20,7 +20,7 @@ var firebaseConfig = {
           var value = data[key]
           htmlData += `
           <tr>
-                  <td>${value.numID}</td>
+                  <td>${value.CPF}</td>
                   <td>${value.name}</td>
                   <td>${value.phone}</td>
                   <td>${value.emailid}</td>

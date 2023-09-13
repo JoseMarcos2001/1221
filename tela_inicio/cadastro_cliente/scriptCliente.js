@@ -147,7 +147,7 @@ document.getElementById("delete").onclick = function () {
 
 
 function crud(){
-  location.href = "./index.html";
+  location.href = "./index_tabela.html";
 }
 
 function inicial(){

@@ -166,5 +166,5 @@ function inicial(){
 
 
 function crud(){
-  location.href = "./index_crud.html";
+  location.href = "index_tabela.html";
 }

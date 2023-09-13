@@ -20,19 +20,10 @@ const firebaseConfig = {
     e.preventDefault();
     
     window.location.reload();
-    var codpedra = getElementVal("cod");
-    if(!codpedra){ 
-      alert("insira um código");
-    }else
   
     var tipo = getElementVal("tipo");
     if(!tipo){ 
-      alert("insira um nome");
-    }else
-  
-    var cor = getElementVal("cor");
-    if(!cor){ 
-      alert("insira uma cor");
+      alert("Insira ");
     }else
   
     var metroquadrado = getElementVal("metroquadrado");

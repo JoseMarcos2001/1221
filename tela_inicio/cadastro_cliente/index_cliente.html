@@ -17,15 +17,15 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">WEB MARMORE</div>
+                <div class="sidebar-heading border-bottom bg-primary text-white">WEB MARMORE</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="inicio()">Inicio</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_funcionario()">Funcionarios</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_cliente()">Clientes</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Produtos</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Orçamentos</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Rascunho</a>
-	            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Alterar senha</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="cadastrar_produto()">Produtos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="orcamento()">Orçamentos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="rascunho()">Rascunho</a>
+	                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"onclick="senha()">Alterar senha</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -55,44 +55,34 @@
 
                     <form action="" id="clienteForm">
                         
-                          <div class="inputBox"><br>
-                              <input type="tel" id="numID" placeholder="CPF" onkeyup="handleCPF(event)" maxlength="11" required />
+                          <div class="mb-3"><br>
+                              <input class="form-control" type="tel" id="numID" placeholder="CPF" onkeyup="handleCPF(event)" maxlength="11" required />
                           </div>
                   
-                          <div id="teste"class="inputBox"><br>
-                              <input type="text" id="name" placeholder="Nome" />
+                          <div id="teste"class="mb-3"><br>
+                              <input class="form-control" type="text" id="name" placeholder="Nome" />
                           </div>
                   
-                          <div class="inputBox"><br>
-                            <input type="tel" id="phone" placeholder="Telefone" onkeyup="handlePhone(event)" maxlength="11" required />
+                          <div class="mb-3"><br>
+                            <input class="form-control" type="tel" id="phone" placeholder="Telefone" onkeyup="handlePhone(event)" maxlength="11" required />
                         </div>
                   
-                          <div class="inputBox"><br>
-                              <input type="email" id="emailid" placeholder="Email" />
+                          <div class="mb-3"><br>
+                              <input class="form-control" type="email" id="emailid" placeholder="Email" />
                           </div>
                   
-                          <div class="inputBox"><br>
-                            <input type="text" id="enderecoid" placeholder="Endereço" />
+                          <div class="mb-3"><br>
+                            <input class="form-control" type="text" id="enderecoid" placeholder="Endereço" />
                         </div>
                   
-                          <div class="inputBox">
-                            <br>
-                              <button type="submit" id="register">✅Registrar</button>
-                          </div>
-                  
-                          <div class="buttons">
-                            <br>
-                            <button id="read">🔎Buscar</button>
-                            <button id="update">🔄Atualizar</button>
-                            <button id="delete">🚯Deletar</button>
-                          </div>
-                          <div>
-                            <button type="button" onclick="crud()">👤CLIENTES CADASTRADOS</button>
-                            </div>
-                  
-                            <footer>
-                              <button type="button" onclick="inicial()">⬅VOLTAR</button>
-                            </footer>
+                        <div class="buttons">
+                          
+                            <button type="submit" id="register" class="btn btn-primary">✅Registrar</button>
+                            <button id="read" class="btn btn-primary">🔎Buscar</button>
+                            <button id="update" class="btn btn-primary">🔄Atualizar</button>
+                            <button id="delete" class="btn btn-primary">🚯Deletar</button>
+                            <button type="button" onclick="crud()" class="btn btn-primary">👤Clientes Cadastrados</button>
+                        </div>
                       </form>
                   </div>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
