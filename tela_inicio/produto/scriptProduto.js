@@ -21,30 +21,30 @@ const firebaseConfig = {
     
     window.location.reload();
   
-    var tipo = getElementVal("tipo");
+    var tipo = getElementVal("produtoid");
     if(!tipo){ 
-      alert("Insira ");
+      alert("Insira tipo e cor do produto");
     }else
   
-    var metroquadrado = getElementVal("metroquadrado");
+    var metroquadrado = getElementVal("metroquadradoid");
     if(!metroquadrado){ 
       alert("insira a metragem quadrada");
     }else
   
-    var valorbruto = getElementVal("valorbruto");
+    var valorbruto = getElementVal("valorbrutoid");
     if(!valorbruto){
       alert("insira o valor bruto da peça");
     }else
 
-    var valorimposto = getElementVal("valorimposto");
+    var valorimposto = getElementVal("valorimpostoid");
     if(!valorimposto){
       alert("insira o valor do imposto");
     }else
   
-    saveMessages(codpedra,tipo,cor, metroquadrado, valorbruto, valorimposto );
+    saveMessages(tipo,metroquadrado,valorbruto,valorimposto);
   
     //   enable alert
-    
+
   
     //   reset the form
     alert("Produto cadastrado!");
@@ -54,15 +54,12 @@ const firebaseConfig = {
   
   
   
-  const saveMessages = (codpedra,tipo,cor, metroquadrado, valorbruto, valorimposto) => {
-    codpedra=codpedra.match(/\d/g).join("");//LIMPA MASCARA
+  const saveMessages = (tipo, metroquadrado, valorbruto, valorimposto) => {
     firebase
       .database()
-      .ref("produtosForm/" + codpedra)
+      .ref("produtosForm/" + tipo)
       .set({
-        codpedra: codpedra,
         tipo: tipo,
-      cor: cor,
       metroquadrado: metroquadrado,
       valorbruto: valorbruto,
       valorimposto: valorimposto,
@@ -73,16 +70,14 @@ const firebaseConfig = {
     return document.getElementById(id).value;
   };
   
-  var numV, tipoV, corV,metroquadradoV,valorbrutoV,valorimpostoV;
+  var tipoV,metroquadradoV,valorbrutoV,valorimpostoV;
   
   function readFom() {
-    numV = document.getElementById("cod").value.match(/\d/g).join("");
-    tipoV = document.getElementById("tipo").value;
-    corV = document.getElementById("cor").value;
-    metroquadradoV = document.getElementById("metroquadrado").value;
-    valorbrutoV = document.getElementById("valorbruto").value;
-    valorimpostoV = document.getElementById("valorimposto").value;
-    console.log(numV, tipoV, corV,metroquadradoV,valorbrutoV,valorimpostoV);
+    tipoV = document.getElementById("produtoid").value;
+    metroquadradoV = document.getElementById("metroquadradoid").value;
+    valorbrutoV = document.getElementById("valorbrutoid").value;
+    valorimpostoV = document.getElementById("valorimpostoid").value;
+    console.log(tipoV,metroquadradoV,valorbrutoV,valorimpostoV);
   }
   
   document.getElementById("read").onclick = function () {
@@ -90,14 +85,12 @@ const firebaseConfig = {
   
     firebase
       .database()
-      .ref("produtosForm/" + numV)
+      .ref("produtosForm/" + tipoV)
       .on("value", function (snap) {
-        document.getElementById("cod").value = snap.val().codpedra;
-        document.getElementById("tipo").value = snap.val().tipo;
-        document.getElementById("cor").value = snap.val().cor;
-        document.getElementById("metroquadrado").value = snap.val().metroquadrado;
-        document.getElementById("valorbruto").value = snap.val().valorbruto;
-        document.getElementById("valorimposto").value = snap.val().valorimposto;
+        document.getElementById("produtoid").value = snap.val().produtoid;
+        document.getElementById("metroquadradoid").value = snap.val().metroquadrado;
+        document.getElementById("valorbrutoid").value = snap.val().valorbruto;
+        document.getElementById("valorimpostoid").value = snap.val().valorimposto;
       });
   };
   
@@ -107,22 +100,18 @@ const firebaseConfig = {
   
     firebase
       .database()
-      .ref("produtosForm/" + numV)
+      .ref("produtosForm/" + tipoV)
       .update({
-        codpedra: numV,
-        tipo: tipoV,
-        cor: corV,
-        metroquadrado: metroquadradoV,
-        valorbruto: valorbrutoV,
-        valorimposto: valorimpostoV,
+        produtoid: tipoV,
+        metroquadradoid: metroquadradoV,
+        valorbrutoid: valorbrutoV,
+        valorimpostoid: valorimpostoV,
       });
     alert("Atualizado com sucesso!");
-    document.getElementById("cod").value = "";
-    document.getElementById("tipo").value = "";
-    document.getElementById("cor").value = "";
-    document.getElementById("metroquadrado").value = "";
-    document.getElementById("valorbruto").value = "";
-    document.getElementById("valorimposto").value = "";
+    document.getElementById("produtoid").value = "";
+    document.getElementById("metroquadradoid").value = "";
+    document.getElementById("valorbrutoid").value = "";
+    document.getElementById("valorimpostoid").value = "";
     window.location.reload();
   };
   
@@ -132,15 +121,13 @@ const firebaseConfig = {
   
     firebase
       .database()
-      .ref("produtosForm/" + numV)
+      .ref("produtosForm/" + tipoV)
       .remove();
       alert("Deletado com sucesso!");
-      document.getElementById("cod").value = "";
-      document.getElementById("tipo").value = "";
-      document.getElementById("cor").value = "";
-      document.getElementById("metroquadrado").value = "";
-      document.getElementById("valorbruto").value = "";
-      document.getElementById("valorimposto").value = "";
+      document.getElementById("produtoid").value = "";
+      document.getElementById("metroquadradoid").value = "";
+      document.getElementById("valorbrutoid").value = "";
+      document.getElementById("valorimpostoid").value = "";
   
     window.location.reload();
   };
