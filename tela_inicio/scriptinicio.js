@@ -28,21 +28,14 @@ function rascunho(){
 function senha(){
     location.href = "senha/index.html";
 }
-  
+ 
+function sobre(){
+  location.href = "sobre/index_sobre.html";
+}
 
 
 function logout(){
-    {
-      var x;
-      var r=confirm("Deseja realmente sair?");
-      if (r==true)
-        {    
-        location.href = "../index.html";
-        }
-      else
-        {
-          location.href = "index.html";
-        }
-      document.getElementById("demo").innerHTML=x;
+    { 
+        location.href = "../index.html";      
       }
   }

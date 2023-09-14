@@ -1,141 +1,155 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyCV2Eu8UdJX2_9FYVLFTV4aF_hLQJ4Edj8",
-    authDomain: "marmore-9e301.firebaseapp.com",
-    databaseURL: "https://marmore-9e301-default-rtdb.firebaseio.com",
-    projectId: "marmore-9e301",
-    storageBucket: "marmore-9e301.appspot.com",
-    messagingSenderId: "213981622362",
-    appId: "1:213981622362:web:2638b873284157c055e863"
+    apiKey: "AIzaSyCV2Eu8UdJX2_9FYVLFTV4aF_hLQJ4Edj8",
+    authDomain: "marmore-9e301.firebaseapp.com",
+    databaseURL: "https://marmore-9e301-default-rtdb.firebaseio.com",
+    projectId: "marmore-9e301",
+    storageBucket: "marmore-9e301.appspot.com",
+    messagingSenderId: "213981622362",
+    appId: "1:213981622362:web:2638b873284157c055e863"
   };
   
   // initialize firebase
   firebase.initializeApp(firebaseConfig);
   
   // reference your database
-  var produtosFormDB = firebase.database().ref("produtosForm");
+  var produtoFormDB = firebase.database().ref("produtoForm");
   
-  document.getElementById("produtosForm").addEventListener("submit", submitForm);
+  document.getElementById("produtoForm").addEventListener("submit", submitForm);
   
   function submitForm(e) {
-    e.preventDefault();
+    e.preventDefault();
+    
+    window.location.reload();
+    var tipo = getElementVal("tipo");
+    if(!tipo){ 
+      alert("Insira o Tipo e Cor do Produto");
+    }else
+  
+    var metro = getElementVal("metro");
+    if(!metro){ 
+      alert("Insira o M² da Pedra");
+    }else
+  
+    var valbruto = getElementVal("valbruto");
+    if(!valbruto){
+      alert("Insira o Valor Bruto");
+    }else
+  
+    var valimp = getElementVal("valimp");
+    if(!valimp){ 
+      alert("Insira o Valor do Imposto");
+    }else
+  
+ 
+
     
-    window.location.reload();
+    
+    saveMessages(tipo,metro,valbruto, valimp);
   
-    var tipo = getElementVal("produtoid");
-    if(!tipo){ 
-      alert("Insira tipo e cor do produto");
-    }else
+    //   enable alert
+    
   
-    var metroquadrado = getElementVal("metroquadradoid");
-    if(!metroquadrado){ 
-      alert("insira a metragem quadrada");
-    }else
-  
-    var valorbruto = getElementVal("valorbrutoid");
-    if(!valorbruto){
-      alert("insira o valor bruto da peça");
-    }else
-
-    var valorimposto = getElementVal("valorimpostoid");
-    if(!valorimposto){
-      alert("insira o valor do imposto");
-    }else
-  
-    saveMessages(tipo,metroquadrado,valorbruto,valorimposto);
-  
-    //   enable alert
-
-  
-    //   reset the form
-    alert("Produto cadastrado!");
-   document.getElementById("produtosForm").reset();
-   window.location.reload();
+    //   reset the form
+    alert("Produto cadastrado!");
+   document.getElementById("produtoForm").reset();
+   window.location.reload();
   }
+
+ 
   
   
   
-  const saveMessages = (tipo, metroquadrado, valorbruto, valorimposto) => {
-    firebase
-      .database()
-      .ref("produtosForm/" + tipo)
-      .set({
-        tipo: tipo,
-      metroquadrado: metroquadrado,
-      valorbruto: valorbruto,
-      valorimposto: valorimposto,
-    });
+  const saveMessages = (tipo,metro,valbruto, valimp) => {
+    
+    firebase
+      .database()
+      .ref("produtoForm/" + tipo)
+      .set({
+          tipo: tipo,
+      metro: metro,
+      valbruto: valbruto,
+      valimp: valimp,
+      
+    });
   };
   
   const getElementVal = (id) => {
-    return document.getElementById(id).value;
+    return document.getElementById(id).value;
   };
   
-  var tipoV,metroquadradoV,valorbrutoV,valorimpostoV;
+  var tipoV, metroV, valbrutoV,emailV;
   
   function readFom() {
-    tipoV = document.getElementById("produtoid").value;
-    metroquadradoV = document.getElementById("metroquadradoid").value;
-    valorbrutoV = document.getElementById("valorbrutoid").value;
-    valorimpostoV = document.getElementById("valorimpostoid").value;
-    console.log(tipoV,metroquadradoV,valorbrutoV,valorimpostoV);
+      tipoV = document.getElementById("tipo").value;
+    metroV = document.getElementById("metro").value;
+    valbrutoV = document.getElementById("valbruto").value;
+    emailV = document.getElementById("valimp").value;
+    
+    console.log(tipoV, metroV, valbrutoV,valimpV);
   }
   
   document.getElementById("read").onclick = function () {
-    readFom();
+    readFom();
   
-    firebase
-      .database()
-      .ref("produtosForm/" + tipoV)
-      .on("value", function (snap) {
-        document.getElementById("produtoid").value = snap.val().produtoid;
-        document.getElementById("metroquadradoid").value = snap.val().metroquadrado;
-        document.getElementById("valorbrutoid").value = snap.val().valorbruto;
-        document.getElementById("valorimpostoid").value = snap.val().valorimposto;
-      });
+    firebase
+      .database()
+      .ref("produtoForm/" + tipoV)
+      .on("value", function (snap) {
+        document.getElementById("tipo").value = snap.val().tipo;
+        document.getElementById("metro").value = snap.val().metro;
+        document.getElementById("valbruto").value = snap.val().valbruto;
+        document.getElementById("valimp").value = snap.val().valimp;
+        
+      });
   };
   
   
   document.getElementById("update").onclick = function () {
-    readFom();
+    readFom();
   
-    firebase
-      .database()
-      .ref("produtosForm/" + tipoV)
-      .update({
-        produtoid: tipoV,
-        metroquadradoid: metroquadradoV,
-        valorbrutoid: valorbrutoV,
-        valorimpostoid: valorimpostoV,
-      });
-    alert("Atualizado com sucesso!");
-    document.getElementById("produtoid").value = "";
-    document.getElementById("metroquadradoid").value = "";
-    document.getElementById("valorbrutoid").value = "";
-    document.getElementById("valorimpostoid").value = "";
-    window.location.reload();
+    firebase
+      .database()
+      .ref("produtoForm/" + tipoV)
+      .update({
+          tipo: tipoV,
+        metro: metroV,
+        valbruto: valbrutoV,
+       valimp: valimpV,
+      });
+    alert("Atualizado com sucesso!");
+    document.getElementById("tipo").value = "";
+    document.getElementById("metro").value = "";
+    document.getElementById("valbruto").value = "";
+    document.getElementById("valimp").value = "";
+    
+    window.location.reload();
   };
   
   
   document.getElementById("delete").onclick = function () {
-    readFom();
+    readFom();
   
-    firebase
-      .database()
-      .ref("produtosForm/" + tipoV)
-      .remove();
-      alert("Deletado com sucesso!");
-      document.getElementById("produtoid").value = "";
-      document.getElementById("metroquadradoid").value = "";
-      document.getElementById("valorbrutoid").value = "";
-      document.getElementById("valorimpostoid").value = "";
+    firebase
+      .database()
+      .ref("produtoForm/" + tipoV)
+      .remove();
+      alert("Deletado com sucesso!");
+    document.getElementById("tipo").value = "";
+    document.getElementById("metro").value = "";
+    document.getElementById("valbruto").value = "";
+    document.getElementById("valimp").value = "";
+    
   
-    window.location.reload();
+    window.location.reload();
   };
   
   
   
   
-
+  function produtocadastrado(){
+    location.href = "./index_tabela.html";
+  }
+  
   function inicial(){
-    location.href = "../tela_inicial.html";
+    location.href = "../tela_inicial.html";
   }
