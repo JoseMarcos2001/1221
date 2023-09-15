@@ -41,8 +41,8 @@ const firebaseConfig = {
     }else
   
  
-
-    
+    var result = Number(valbruto)+Number(valimp);
+    console.log(result);
     
     saveMessages(tipo,metro,valbruto, valimp);
   
@@ -77,13 +77,13 @@ const firebaseConfig = {
     return document.getElementById(id).value;
   };
   
-  var tipoV, metroV, valbrutoV,emailV;
+  var tipoV, metroV, valbrutoV,valimpV;
   
   function readFom() {
-      tipoV = document.getElementById("tipo").value;
+     tipoV = document.getElementById("tipo").value;
     metroV = document.getElementById("metro").value;
     valbrutoV = document.getElementById("valbruto").value;
-    emailV = document.getElementById("valimp").value;
+    valimpV = document.getElementById("valimp").value;
     
     console.log(tipoV, metroV, valbrutoV,valimpV);
   }
@@ -143,7 +143,9 @@ const firebaseConfig = {
     window.location.reload();
   };
   
-  
+  function soma(){
+    console.log("ola");
+  }
   
   
   function produtocadastrado(){
