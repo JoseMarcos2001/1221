@@ -99,7 +99,6 @@ const firebaseConfig = {
   
   document.getElementById("read").onclick = function () {
     readFom();
-  
     firebase
       .database()
       .ref("produtoForm/" + tipoV)
