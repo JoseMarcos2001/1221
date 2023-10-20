@@ -14,9 +14,30 @@ firebase.initializeApp(firebaseConfig);
 // reference your database
 var clienteFormDB = firebase.database().ref("clienteForm");
 
+
 document.getElementById("orcamentoForm").addEventListener("submit", submitForm);
+var numPedido =0;
+count();
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+atualiza();
+console.log(111)
+function count(){
+ return  firebase
+  .database()
+  .ref("indices/orcamento")
+  .on("value", function (snap) {
+    numPedido= snap.val();
+   numPedido++;
+   document.getElementById("pedido").value=numPedido;
+  });
 
-
+}
+function atualiza(){
+  return firebase
+  .database()
+  .ref("indices")
+  .set({orcamento:numPedido});
+}
 
 function submitForm(e) {
   e.preventDefault();
