@@ -16,45 +16,55 @@ var clienteFormDB = firebase.database().ref("clienteForm");
 
 
 document.getElementById("orcamentoForm").addEventListener("submit", submitForm);
-var numPedido =0;
-count();
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-atualiza();
-console.log(111)
+geraID()
+async function geraID() {
+  try {
+    console.log("entrei")
+    let result = await count();
+    const newResult = await atualiza(++result);
+    document.getElementById("pedido").value=result;
+  } catch (error) {
+  }
+}
+
 function count(){
  return  firebase
   .database()
   .ref("indices/orcamento")
-  .on("value", function (snap) {
-    numPedido= snap.val();
-   numPedido++;
-   document.getElementById("pedido").value=numPedido;
-  });
-
+  .once("value").then((snapshot) => {
+    return snapshot.val();
+   });
 }
-function atualiza(){
+
+function atualiza(valor){
   return firebase
   .database()
   .ref("indices")
-  .set({orcamento:numPedido});
+  .set({orcamento:valor});
 }
 
 function submitForm(e) {
   e.preventDefault();
   
-  
+  var nome = getElementVal("name");
+  var CPF = getElementVal("numID");
+  var telefone = getElementVal("phone");
+  var email = getElementVal("emailid");
+  var endereco = getElementVal("enderecoid");
+  var numPedido = getElementVal("pedido");
   var name1 = getElementVal("name1");
   var qtd1 = getElementVal("qtd1");
   var larg1 = getElementVal("larg1");
   var comp1 = getElementVal("comp1");
-
+  var status = "aberto";
  
 
-  saveMessages(name1,qtd1,larg1,comp1);
+  saveMessages(CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg1,comp1,status);
   
 
   alert("foi!");
 document.getElementById("orcamentoForm").reset();
+location.href = "inicio.html"; 
 }
 
 function calculo(){
@@ -71,15 +81,22 @@ function calculo(){
   
 }
 
-const saveMessages = (name1,qtd1,larg1,comp1) => {
+const saveMessages = (CPF,nome,telefone,email,endereco,numPedido,name1,qtd1,larg1,comp1,status) => {
   firebase
     .database()
-    .ref("orcamentoForm/clienteForm/" + name1)
+    .ref("orcamentoForm/" + numPedido)
     .set({
+      nome:nome,
+      CPF:CPF,
+      telefone:telefone,
+      email:email,
+      endereco:endereco,
+      numPedido:numPedido,
       name1: name1,
       qtd1: qtd1,
       larg1: larg1,
       comp1: comp1,
+      status:status,
     
   });
 };
@@ -90,7 +107,7 @@ const getElementVal = (id) => {
   return document.getElementById(id).value;
 };
 
-var numV, nameV, phoneV,emailV,enderecoV;
+var clienteV,numV, nameV, phoneV,emailV,enderecoV;
 
 function readFom() {
   numV = document.getElementById("numID").value.match(/\d/g).join("");//LIMPA MASCARA;;;
@@ -115,5 +132,3 @@ document.getElementById("read").onclick = function () {
       document.getElementById("enderecoid").value = snap.val().enderecoid;
     });
 };
-
-
