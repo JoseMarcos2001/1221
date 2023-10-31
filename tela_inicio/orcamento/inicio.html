@@ -53,7 +53,7 @@
                     <button id="read" class="btn btn-primary" onclick="orçamento()">☑Buscar e imprimir Orçamento</button>
                   </div>
 <h1 class="mt-4">Listagem Orçamentos </h1>
-                    
+<input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="Buscar pedido...">
                     
     
                     <div class="table-responsive">
@@ -67,7 +67,7 @@
                                 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tabela-pedidos">
               
                         </tbody>
                     </table>
@@ -163,7 +163,7 @@ var firebaseConfig = {
                   
                   <td>
                     <button onclick="readyForUpdate('${key}', this)">Alterar Status</button>
-                    
+                    <button onclick="orçamento('${key}', this)">Imprimir orçamento</button>
                 </td>
 
               </tr>
@@ -201,6 +201,34 @@ var obj = {
 var listRef = database.ref ('orcamentoForm/' + numPedido)
 listRef.update(obj)
 }
+
+
+const INPUT_BUSCA = document.getElementById('input-busca');
+const TABELA_BEBIDAS = document.getElementById('tabela-pedidos');
+
+INPUT_BUSCA.addEventListener('keyup', () => {
+    let expressao = INPUT_BUSCA.value.toLowerCase();
+
+    if (expressao.length === 1) {
+        return;
+    }
+
+    let linhas = TABELA_BEBIDAS.getElementsByTagName('tr');
+
+    for (let posicao in linhas) {
+        if (true === isNaN(posicao)) {
+            continue;
+        }
+
+        let conteudoDaLinha = linhas[posicao].innerHTML.toLowerCase();
+
+        if (true === conteudoDaLinha.includes(expressao)) {
+            linhas[posicao].style.display = '';
+        } else {
+            linhas[posicao].style.display = 'none';
+        }
+    }
+});
 
      
   function a(){
