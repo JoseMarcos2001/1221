@@ -61,6 +61,7 @@ var firebaseConfig = {
   var fetchedData = database.ref('orcamentoForm/')
   fetchedData.on('value', (snapshot) => {
       var data = snapshot.val()
+      let valores=['Aberto','Fechado','Cancelado'];
       var htmlData = ''
       for (var key in data){
           var value = data[key]
@@ -72,15 +73,14 @@ var firebaseConfig = {
                   
                   <td>${value.status}</td>
                   
-                  
                   <td>
                   
-                    <select name="select">
-                            <option value="valor1">Aberto</option>
-                            <option value="valor2">Fechado</option>
-                            <option value="valor3">Cancelado</option>
-                    </select>
-
+                    <select name="select" id="status${value.numPedido}">          `;       
+                    for (let index = 0; index < 3; index++) {
+                       htmlData+='<option value="'+valores[index]+'"'+(valores[index].toUpperCase()==value.status.toUpperCase()?'selected':'')+'>'+valores[index]+'</option>'              
+                    }
+    
+                    htmlData += `    </select>
                     <button onclick="readyForUpdate('${key}', this)">Alterar Status</button>
                     <button onclick="orçamento('${key}', this)">Imprimir orçamento</button>
                 </td>
@@ -110,10 +110,11 @@ elem.innerHTML = 'Salvar'
 
 
 function updateNow(numPedido){
-var contentId = document.querySelectorAll('.temp-update-class')
-var obj = {
-    'status': contentId[2].textContent
     
+var contentId = document.querySelectorAll('.temp-update-class')
+
+var obj = {
+    'status': document.getElementById('status'+numPedido).value
     
 }
 
